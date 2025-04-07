@@ -1,0 +1,91 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<ejs-grid id="Grid" height="348" toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Search" })" allowPaging=true allowSorting=true allowFiltering=true>
+     <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal"></e-grid-editSettings>
+    <e-grid-columns>
+        <e-grid-column field='OrderID' headerText='Order ID' width='120' textAlign='Right' isPrimaryKey="true" isIdentity="true"></e-grid-column>
+        <e-grid-column field='CustomerID' headerText='Customer ID' width='160'></e-grid-column>
+        <e-grid-column field='EmployeeID' headerText='Employee ID' width='160' textAlign='Right'></e-grid-column>
+        <e-grid-column field='Freight' headerText='Freight' format='C2' width='160' textAlign='Right'></e-grid-column>
+        <e-grid-column field='ShipCity' headerText='Ship City' width='150'></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
+
+<script>
+    class CustomAdaptor extends ej.data.UrlAdaptor {
+        processResponse(data, ds, query, xhr, request, changes) {
+            const original = super.processResponse(data, ds, query, xhr, request, changes);
+            return original;
+        }
+
+        insert(dm, data) {
+            return {
+                url: dm.dataSource.insertUrl || dm.dataSource.url,
+                data: JSON.stringify({
+                    __RequestVerificationToken: "Syncfusion",
+                    value: data,
+                    action: 'insert'
+                }),
+                type: 'POST'
+            };
+        }
+
+        update(dm, keyField, value) {
+            return {
+                url: dm.dataSource.updateUrl || dm.dataSource.url,
+                data: JSON.stringify({
+                    __RequestVerificationToken: "Syncfusion",
+                    value: value,
+                    action: 'update'
+                }),
+                type: 'POST'
+            };
+        }
+
+        remove(dm, keyField, value) {
+            return {
+                url: dm.dataSource.removeUrl || dm.dataSource.url,
+                data: JSON.stringify({
+                    __RequestVerificationToken: "Syncfusion",
+                    key: value,
+                    keyColumn: keyField,
+                    action: 'remove'
+                }),
+                type: 'POST'
+            };
+        }
+
+        batchRequest(dm, changes, e) {
+            return {
+                url: dm.dataSource.batchUrl || dm.dataSource.url,
+                data: JSON.stringify({
+                    __RequestVerificationToken: "Syncfusion",
+                    added: changes.addedRecords,
+                    changed: changes.changedRecords,
+                    deleted: changes.deletedRecords,
+                    key: e.key,
+                    action: 'batch'
+                }),
+                type: 'POST'
+            };
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let grid = document.getElementById("Grid").ej2_instances[0];
+        if (grid) {
+            let dataManager = new ejs.data.DataManager({
+                url: "/api/Grid",
+                adaptor: new CustomAdaptor(),
+                insertUrl: "/api/Grid/Insert",
+                updateUrl: "/api/Grid/Update",
+                removeUrl: "/api/Grid/Remove",
+            });
+            grid.dataSource = dataManager;
+        }
+    });
+</script>

@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<ejs-grid id="Grid" toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
+    <e-data-manager url='/api/Grid'
+                    insertUrl='/api/Grid/Insert'
+                    updateUrl='/api/Grid/Update'
+                    removeUrl='/api/Grid/Remove'
+                    adaptor="UrlAdaptor">
+    </e-data-manager>
+    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal"></e-grid-editSettings>
+    <e-grid-columns>
+        <e-grid-column field='OrderID' headerText='Order ID' width='120' textAlign='Right' isPrimaryKey=true></e-grid-column>
+        <e-grid-column field='CustomerID' headerText='Customer ID' width='160'></e-grid-column>
+        <e-grid-column field='EmployeeID' headerText='Employee ID' width='160' textAlign='Right'></e-grid-column>
+        <e-grid-column field='Freight' headerText='Freight' format="C2" width='160' textAlign='Right'></e-grid-column>
+        <e-grid-column field='ShipCity' headerText='Ship City' width='150'></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
