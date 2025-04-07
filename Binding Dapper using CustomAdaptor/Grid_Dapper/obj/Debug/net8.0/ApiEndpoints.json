@@ -1,0 +1,120 @@
+[
+  {
+    "ContainingType": "Grid_Dapper.Server.Controllers.GridController",
+    "Method": "Post",
+    "RelativePath": "api/Grid",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DataManagerRequest",
+        "Type": "Syncfusion.EJ2.Base.DataManagerRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grid_Dapper.Server.Controllers.GridController",
+    "Method": "GetOrderData",
+    "RelativePath": "api/Grid",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Grid_Dapper.Server.Controllers.GridController\u002BOrders, Grid_Dapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Grid_Dapper.Server.Controllers.GridController",
+    "Method": "BatchUpdate",
+    "RelativePath": "api/Grid/BatchUpdate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "Grid_Dapper.Server.Controllers.GridController\u002BCRUDModel\u00601[[Grid_Dapper.Server.Controllers.GridController\u002BOrders, Grid_Dapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grid_Dapper.Server.Controllers.GridController",
+    "Method": "Insert",
+    "RelativePath": "api/Grid/Insert",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "Grid_Dapper.Server.Controllers.GridController\u002BCRUDModel\u00601[[Grid_Dapper.Server.Controllers.GridController\u002BOrders, Grid_Dapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Grid_Dapper.Server.Controllers.GridController",
+    "Method": "Remove",
+    "RelativePath": "api/Grid/Remove",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "Grid_Dapper.Server.Controllers.GridController\u002BCRUDModel\u00601[[Grid_Dapper.Server.Controllers.GridController\u002BOrders, Grid_Dapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Grid_Dapper.Server.Controllers.GridController",
+    "Method": "Update",
+    "RelativePath": "api/Grid/Update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "Grid_Dapper.Server.Controllers.GridController\u002BCRUDModel\u00601[[Grid_Dapper.Server.Controllers.GridController\u002BOrders, Grid_Dapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
