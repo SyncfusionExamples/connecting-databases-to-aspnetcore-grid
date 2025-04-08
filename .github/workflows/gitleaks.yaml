@@ -31,7 +31,8 @@ jobs:
        if: steps.gitleaks.outcome != 'success'
        uses: actions/setup-dotnet@v3
        with:
-          dotnet-version: '3.1.x'
+          dotnet-version: '3.1.426'
+          cache: true
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
