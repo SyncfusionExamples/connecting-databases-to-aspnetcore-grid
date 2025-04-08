@@ -64,12 +64,12 @@
         let grid = document.getElementById("Grid").ej2_instances[0];
         if (grid) {
             let dataManager = new ejs.data.DataManager({
-                url: "https://localhost:7018/api/Grid", // Corrected URL
-                  insertUrl: 'https://localhost:7018/api/Grid/Insert',
-                   updateUrl: 'https://localhost:7018/api/Grid/Update',
-                  removeUrl: 'https://localhost:7018/api/Grid/Remove',
-      // Enable batch URL when batch editing is enabled.
-      //batchUrl: 'https://localhost:7018/api/Grid/BatchUpdate',
+                url: "https://localhost:xxxx/api/Grid", // Corrected URL
+                  insertUrl: 'https://localhost:xxxx/api/Grid/Insert',
+                   updateUrl: 'https://localhost:xxxx/api/Grid/Update',
+                  removeUrl: 'https://localhost:xxxx/api/Grid/Remove',
+                  // Enable batch URL when batch editing is enabled.
+                  //batchUrl: 'https://localhost:xxxx/api/Grid/BatchUpdate',
                 adaptor: new CustomAdaptor(),
             });
             grid.dataSource = dataManager;
