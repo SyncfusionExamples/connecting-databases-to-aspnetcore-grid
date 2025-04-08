@@ -29,10 +29,24 @@ jobs:
        uses: actions/setup-dotnet@v3
        with:
           dotnet-version: '3.1.x'
+     - name: Install libssl
+       if: steps.gitleaks.outcome != 'success'
+       run: sudo apt-get install -y libssl1.1 || sudo apt-get install -y libssl3
+     - name: Run Report Tool
+       if: steps.gitleaks.outcome != 'success'
+       run: |
+          dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll \
+            ${{ secrets.CITEAMCREDENTIALS }} \
+            "$GITHUB_REF_NAME" \
+            ${{ secrets.NETWORKCREDENTIALS }} \
+            ${{ secrets.NETWORKKEY }} \
+            "$GITHUB_WORKSPACE" \
+            ${{ secrets.ORGANIZATIONNAME }}
+          exit 1
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
-           mono $(which nuget)  nuget install "Syncfusion.Email" -source ${{ secrets.NexusFeedLink }} -ExcludeVersion
+           nuget install "Syncfusion.Email" -source ${{ secrets.NexusFeedLink }} -ExcludeVersion
            dir $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1
            dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll ${{ secrets.CITEAMCREDENTIALS }} "$GITHUB_REF_NAME" ${{ secrets.NETWORKCREDENTIALS }} ${{ secrets.NETWORKKEY }} "$GITHUB_WORKSPACE" ${{ secrets.ORGANIZATIONNAME }}
            exit 1
