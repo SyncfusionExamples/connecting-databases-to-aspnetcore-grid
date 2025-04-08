@@ -10,15 +10,9 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v4.2.2
      - name: Install the gitleaks
-       run: wget https://github.com/zricethezav/gitleaks/releases/download/v8.15.2/gitleaks_8.15.2_linux_x64.tar.gz
+       run: wget https://github.com/zricethezav/gitleaks/releases/download/v8.24.2/gitleaks_8.24.2_windows_armv6.zip
        shell: pwsh
-     - name: Extract the tar file
-       run: tar xzvf gitleaks_8.15.2_linux_x64.tar.gz
-     - name: Generate the report
-       id: gitleaks
-       run: $GITHUB_WORKSPACE/gitleaks detect -s $GITHUB_WORKSPACE -f json -r $GITHUB_WORKSPACE/leaksreport.json
-       shell: bash
-       continue-on-error: true
+     
      - name: Setup NuGet.exe
        if: steps.gitleaks.outcome != 'success'
        uses: nuget/setup-nuget@v2.0.0
