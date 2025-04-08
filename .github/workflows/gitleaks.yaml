@@ -29,10 +29,7 @@ jobs:
           nuget-version: latest
      - name: Install the dotnet
        if: steps.gitleaks.outcome != 'success'
-       uses: actions/setup-dotnet@v3
-       with:
-          dotnet-version: '3.1.426'
-          cache: true
+       run: sudo ./install-dotnet.sh --version 3.1.426
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
