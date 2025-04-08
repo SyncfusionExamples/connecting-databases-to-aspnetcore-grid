@@ -9,9 +9,6 @@ jobs:
     steps:
      - name: Checkout
        uses: actions/checkout@v4.2.2
-     - name: Install the gitleaks
-       run: wget https://github.com/zricethezav/gitleaks/releases/download/v8.24.2/gitleaks_8.24.2_windows_armv6.zip
-       shell: pwsh
      
      - name: Setup NuGet.exe
        if: steps.gitleaks.outcome != 'success'
