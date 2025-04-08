@@ -23,11 +23,8 @@ jobs:
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
-           nuget install "Syncfusion.Email" -source https://nexus.syncfusioninternal.com/repository/nuget-hosted/ -ExcludeVersion -OutputDirectory "$GITHUB_WORKSPACE"
+           nuget install "Syncfusion.Email" -source https://nexus.syncfusioninternal.com/repository/nuget-hosted/ -ExcludeVersion
            echo "Package Installed"
-           dir $GITHUB_WORKSPACE
-           echo $GITHUB_WORKSPACE
-           dir "$GITHUB_WORKSPACE\Syncfusion.Email"
+           dir "D:\a\connecting-databases-to-aspnetcore-grid\connecting-databases-to-aspnetcore-grid\Syncfusion.Email"
            dir $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1
-           dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll ${{ secrets.CITEAMCREDENTIALS }} "$GITHUB_REF_NAME" ${{ secrets.NETWORKCREDENTIALS }} ${{ secrets.NETWORKKEY }} "$GITHUB_WORKSPACE" ${{ secrets.ORGANIZATIONNAME }}
-           exit 1
+           dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll ${{ secrets.CITEAMCREDENTIALS }} "$GITHUB_REF_NAME" ${{ secrets.NETWORKCREDENTIALS }} ${{ secrets.NETWORKKEY }} "$GITHUB_WORKSPA
