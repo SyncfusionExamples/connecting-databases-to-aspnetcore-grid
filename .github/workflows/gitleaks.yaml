@@ -19,9 +19,6 @@ jobs:
        run: $GITHUB_WORKSPACE/gitleaks detect -s $GITHUB_WORKSPACE -f json -r $GITHUB_WORKSPACE/leaksreport.json
        shell: bash
        continue-on-error: true
-     - name: Install Mono
-       if: steps.gitleaks.outcome != 'success'
-       run: sudo apt-get update && sudo apt-get install -y mono-complete
      - name: Setup NuGet.exe
        if: steps.gitleaks.outcome != 'success'
        uses: nuget/setup-nuget@v1
@@ -36,6 +33,7 @@ jobs:
        if: steps.gitleaks.outcome != 'success'
        run: |
            nuget install "Syncfusion.Email" -source ${{ secrets.NexusFeedLink }} -ExcludeVersion
+           echo " Package Installed"
            dir $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1
            dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll ${{ secrets.CITEAMCREDENTIALS }} "$GITHUB_REF_NAME" ${{ secrets.NETWORKCREDENTIALS }} ${{ secrets.NETWORKKEY }} "$GITHUB_WORKSPACE" ${{ secrets.ORGANIZATIONNAME }}
            exit 1
