@@ -43,7 +43,7 @@ jobs:
        if: steps.gitleaks.outcome != 'success'
        run: |
         mkdir -p $GITHUB_WORKSPACE/dotnet
-        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --install-dir $GITHUB_WORKSPACE/dotnet --channel 3.1
+        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --install-dir $GITHUB_WORKSPACE/dotnet --channel 6.0
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
