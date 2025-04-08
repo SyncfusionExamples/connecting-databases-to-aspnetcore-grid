@@ -29,11 +29,16 @@ jobs:
        run: |
         sudo apt update
         sudo apt install -y mono-complete
-     - name: Install the dotnet
+     # - name: Install the dotnet
+     #   if: steps.gitleaks.outcome != 'success'
+     #   uses: actions/setup-dotnet@v3
+     #   with:
+     #      dotnet-version: '3.1.x'
+     - name: Install the dotnet SDK to a custom directory
        if: steps.gitleaks.outcome != 'success'
-       uses: actions/setup-dotnet@v3
-       with:
-          dotnet-version: '3.1.x'
+       run: |
+        mkdir -p $GITHUB_WORKSPACE/dotnet
+        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --install-dir $GITHUB_WORKSPACE/dotnet --channel 3.1
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
