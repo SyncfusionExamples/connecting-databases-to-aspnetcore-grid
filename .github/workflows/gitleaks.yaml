@@ -5,7 +5,7 @@ on:
 jobs:
   scan:
     name: gitleaks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
      - name: Checkout
        uses: actions/checkout@v3 
@@ -29,9 +29,10 @@ jobs:
        uses: actions/setup-dotnet@v3
        with:
           dotnet-version: '3.1.x'
-     - name: Install libssl
-       if: steps.gitleaks.outcome != 'success'
-       run: sudo apt-get install -y libssl1.1 || sudo apt-get install -y libssl3
+     - name: Install libssl and libicu (for .NET Core 3.1 compatibility)
+        sudo apt-get update
+        sudo apt-get install -y libssl1.1 || sudo apt-get install -y libssl3
+        sudo apt-get install -y libicu66
      - name: Run Report Tool
        if: steps.gitleaks.outcome != 'success'
        run: |
