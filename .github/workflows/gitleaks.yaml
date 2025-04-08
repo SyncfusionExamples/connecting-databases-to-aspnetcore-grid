@@ -26,7 +26,7 @@ jobs:
            nuget install "Syncfusion.Email" -source https://nexus.syncfusioninternal.com/repository/nuget-hosted/ -ExcludeVersion
            echo "Package Installed"
            dir $GITHUB_WORKSPACE
-           echo "$GITHUB_WORKSPACE
+           echo $GITHUB_WORKSPACE
            dir "$GITHUB_WORKSPACE\Syncfusion.Email"
            dir $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1
            dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll ${{ secrets.CITEAMCREDENTIALS }} "$GITHUB_REF_NAME" ${{ secrets.NETWORKCREDENTIALS }} ${{ secrets.NETWORKKEY }} "$GITHUB_WORKSPACE" ${{ secrets.ORGANIZATIONNAME }}
