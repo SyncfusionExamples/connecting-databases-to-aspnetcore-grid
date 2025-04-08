@@ -5,7 +5,7 @@ on:
 jobs:
   scan:
     name: gitleaks
-    runs-on: ubuntu-22.04.5
+    runs-on: ubuntu-latest
     steps:
      - name: Checkout
        uses: actions/checkout@v4.2.2
@@ -32,7 +32,7 @@ jobs:
      - name: Install the report tool packages
        if: steps.gitleaks.outcome != 'success'
        run: |
-           nuget install "Syncfusion.Email" -source ${{ secrets.NexusFeedLink }} -ExcludeVersion
+           dotnet nuget install "Syncfusion.Email" -source ${{ secrets.NexusFeedLink }} -ExcludeVersion
            echo " Package Installed"
            dir $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1
            dotnet $GITHUB_WORKSPACE/Syncfusion.Email/lib/netcoreapp3.1/GitleaksReportMail.dll ${{ secrets.CITEAMCREDENTIALS }} "$GITHUB_REF_NAME" ${{ secrets.NETWORKCREDENTIALS }} ${{ secrets.NETWORKKEY }} "$GITHUB_WORKSPACE" ${{ secrets.ORGANIZATIONNAME }}
